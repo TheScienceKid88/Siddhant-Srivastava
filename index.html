@@ -54,6 +54,7 @@
     }
     h1 { margin: 0 0 8px 0; font-size: 1.8rem; }
     p.lead { margin: 0; color: var(--muted); }
+	li.lead { margin: 0; color: var(--muted); }
     .tags { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
     .tag {
       background: #eaf3ff;
@@ -96,6 +97,7 @@
     .item .date { color: var(--muted); font-size: 0.85rem; width: 92px; }
     .item .content h4 { margin: 0 0 6px 0; }
     .item .content p { margin: 0; color: var(--muted); }
+	.item .content li { margin: 0; color: var(--muted); }
 	.links {text-decoration: none;font-style: italic;}
     footer {
       padding: 20px 16px;
@@ -211,6 +213,31 @@
           console.log('aria-expanded:', menuToggle.getAttribute('aria-expanded'));
         });
       });
+	   const hiddenContent1 = document.getElementById('hiddenContent1');
+	  const readMoreBtn = document.getElementById('readmore1');
+
+	  readMoreBtn.addEventListener('click', function() {
+		if (hiddenContent1.style.display === 'none') {
+		  hiddenContent1.style.display = 'block'; // Or 'flex', 'grid', depending on your layout
+		  readMoreBtn.textContent = 'Read Less';
+		} else {
+		  hiddenContent1.style.display = 'none';
+		  readMoreBtn.textContent = 'Read More';
+		}
+	  });
+	  
+	  const hiddenContent2 = document.getElementById('hiddenContent2');
+	  const readMoreBtn2 = document.getElementById('readmore2');
+
+	  readMoreBtn2.addEventListener('click', function() {
+		if (hiddenContent2.style.display === 'none') {
+		  hiddenContent2.style.display = 'block'; // Or 'flex', 'grid', depending on your layout
+		  readMoreBtn2.textContent = 'Read Less';
+		} else {
+		  hiddenContent2.style.display = 'none';
+		  readMoreBtn2.textContent = 'Read More';
+		}
+	  });
     });
   </script>
 </head>
@@ -247,7 +274,7 @@
     <div>
       <div class="card">
         <h1>Hi — I’m <strong>Siddhant Srivastava</strong></h1>
-        <p class="lead">High school senior (Class of 2026) exploring coding, robotics, and large language models. I’m fascinated by how perception, decision-making, and hardware efficiency come together to create autonomous systems.</p>
+        <p class="lead">High school student (Class of 2026) exploring coding, robotics, and large language models. I earned a silver at USACO. I’m fascinated by how perception, decision-making, and hardware efficiency come together to create autonomous systems.</p>
 
         <div class="tags">
           <span class="tag">C</span>
@@ -260,7 +287,7 @@
 
         <div style="margin-top:14px">
           <a class="btn" href="#projects">See Projects</a>
-          <a class="btn" style="/*background:#2b8cd6;*/background: #d62b3d;opacity:.9;margin-left:8px" href="https://github.com/siddhantasri" target="_blank">GitHub</a>
+          <a class="btn" style="/*background:#2b8cd6;*/background: #d62b3d;opacity:.9;margin-left:8px" href="https://github.com/TheScienceKid88" target="_blank">GitHub</a>
         </div>
       </div>
       <!-- Research -->
@@ -297,14 +324,14 @@
         <div class="grid">
           <article class="project card">
             <div>
-              <h3>Traffic Simulation (Cellular Automata)</h3>
-              <div class="meta">Python • 2025</div>
-              <p style="margin-top:8px;color:var(--muted)">A small simulation comparing lane-change rules and congestion.</p>
+              <h3>Flappy Bird Game</h3>
+              <div class="meta">C# • 2024</div>
+              <p style="margin-top:8px;color:var(--muted)">A small game where a bird is controlled within bounds</p>
             </div>
-            <a class="btn" href="https://github.com/USERNAME/traffic-sim" target="_blank">View code</a>
+            <a class="btn" href="https://github.com/TheScienceKid88/Flappy-Bird" target="_blank">View code</a>
           </article>
 
-          <article class="project card">
+          <!--<article class="project card">
             <div>
               <h3>Sorting Visualizer</h3>
               <div class="meta">JavaScript • 2024</div>
@@ -320,7 +347,7 @@
               <p style="margin-top:8px;color:var(--muted)">Tracks focused sessions and visualizes weekly progress.</p>
             </div>
             <a class="btn" href="#" target="_blank">View</a>
-          </article>
+          </article>-->
         </div>
       </div>
     </div>
@@ -359,15 +386,74 @@
         <div class="date">May 2025</div>
         <div class="content">
           <h4>How I Debugged My First Neural Net</h4>
-          <p>Diagnosing vanishing gradients and fixing them.</p>
+          <p>My learning says even a small dataset quirk can break the training model.</p><a href="#blog" class="links" id="readmore1">Read more</a>
+		  <div id="hiddenContent1" style="display: none;"><p>I recently decided to build my very first neural network—a smart program which was designed to learn things, for instance distnguishing the picture of a dog from a cat. I thought I was in for a quick win, but things were not as simple. My code ran, but the results were wrong and even after repeated attempts showed no improvement.</p>
+
+		<p>This is the short, painful, but rewarding story of how I debugged my first AI program.
+<ol>
+<li> <b>Stop Blaming the Code: Check the Data!</b><br/>
+At first I kept thinking the code that I had written was wrong and I kept changing the fancy math variables.Very soon I realised I need to look at the data thats coming in the code<br/>
+
+<b>The Mistake:</b> I had a subtle bug that was mixing up my input images and their labels. The network was looking at a cat but being told, "Hey, this is a dog!" It was not training the way I wanted it to.<br/>
+
+<b>The Fix:</b> I went back to the basics and manually debugged the first 20 inputs. I printed the image and its assigned label right next to each other. Soon I fixed the data loading script, and to my amazement my network finally started learning something.
+<br/>
+<b>Takeaway:</b> We should verify the data first. If the data is wrong, the network can't be trained.</li>
+<li> <b>Taming the Beast: The Learning Pace</b><br/>
+A neural network learns by fine-tuning its internal settings slowly one step at a time. Typically the learning rate determines the size of those steps. Getting it right was a big hurdle.<br/>
+
+<b>Too Fast (The Bulldozer):</b> At first my learning rate was too high. My situation was similar to parking a car by slamming the gas and brakes-thereby overshooting the network constantly. This in turn would make the loss jump up and down wildly.<br/>
+
+<b>Too Slow (The Snail):</b> I tried dropping the rate and the training appeared constant. It would take ages to find the right settings.<br/>
+
+<b>The Fix:</b> So,I decided to find that sweet spot. I experimented with smaller values.The loss curve finally began to dip smoothly and steadily — a sign that the network was learning at just the right pace.
+
+<br/>
+<b>Takeaway:</b> Learning Rate is crucial for stable and efficient training.</li>
+
+<li> <b>Making It Smarter: Architecture and Layers</b><br/>
+Perhaps,my network was too "simple" for the complex task of classifying real-world images. With only a few layers, it could capture basic shapes but missed the subtle textures and patterns that distinguish one object from another.<br/>
+
+<b>The Problem:</b> It was like comparing a simple problem like addition to a complex one like calculus. My small network  was incapable of finding the complex patterns.<br/>
+
+<b>The Fix:</b> To help my model better,I added a few more convolutional layers. These layers start by detecting simple patterns like edges and corners, then gradually build up to recognize more complex features such as eyes or noses. Adding these layers finally gave my network the necessary capacity to learn.
+<br/>
+ Takeaway: If your network isn't learning, consider you are missing on something. More layers can often unlock better performance.</li>
+
+<li> <b>The Final Polish: Stabilization</b><br/>
+Even after fixing the rate and size, the training still felt unstable. The different layers were constantly changing, confusing the layers that came after them.<br/>
+
+<b>The Fix:</b> I introduced Batch Normalization layers. These act like a helpful coach between each layer, ensuring the data flowing through the network stays consistent. This stabilized the whole process, making the final stages of learning much smoother and faster.<br/>
+
+After what felt like countless experiments and constantly nudging between success and failure, the accuracy finally jumped from barely better than random guessing to over 85%! Debugging a neural net is all about methodical problem-solving: check your data, tune your speed, and give the model enough brainpower to learn.</li></ol></p></div>
         </div>
       </div>
 
       <div class="item card">
-        <div class="date">Apr 2025</div>
+        <div class="date">Sept 2024</div>
         <div class="content">
           <h4>Visualizing Sorting Algorithms</h4>
-          <p>Why visual feedback makes algorithms intuitive.</p>
+          <p>Why visual feedback makes algorithms intuitive.</p><a href="#blog" class="links" id="readmore2">Read more</a>
+		  <div id="hiddenContent2" style="display: none;"><p>
+		  When I first learned about sorting algorithms, the code seemed straightforward and theoretical — a few loops and swaps, and somehow the numbers ended up in order.But visualizing the algorithms added the much needed rythm and fun.
+		  <br/>
+<ul><li>		  
+<b>It brings the logic to life:</b> Instead of just seeing the code, you see patterns i.e bar charts in motion. The height of each bar represents a number (the value being sorted), and the colors show you which element the algorithm is currently focused on.
+</li><li>
+<b>It reveals their strengths and weaknesses:</b> You can see how an algorithm like Bubble Sort slowly "bubble" the largest element up the list. At the same time, it is clearly evident how slow and inefficient it is compared to the lightning-fast, divide-and-conquer approach of Quick Sort.
+</li><li>
+<b>It makes complexity understandable:</b> Concepts like recursion become clear when you see Merge Sort splitting the array into smaller and smaller halves until they are stand sorted, and then merging them back together.
+</li></ul>
+<br/>
+My experiment with the big four:
+<br/>
+<ol>
+<li><b>Bubble Sort:</b> It's the most simple and slowest of all. It repeatedly steps through the list, compares adjacent items, and swaps them if they are in the wrong order. Visually, it looks like a methodical, almost painful crawl, with the largest bars slowly floating to their correct spot.</li>
+<li><b>Insertion Sort:</b> This one is similar to how most people sort a hand of playing cards. It takes one item and "inserts" it into the correct position in the already sorted part of the list. It looks efficient when the list is almost sorted, but gets really bogged down when the data set is large and random.</li>
+<li><b>Quick Sort:</b> This is the most high-performing and tactful. It works by picking a pivot element and partitioning the other elements into two sub-lists: those less than the pivot and those greater than the pivot. Visually, the array seems to organize itself almost instantly, with large, sweeping movements that quickly put items into their final positions.</li>
+<li><b>Merge Sort:</b>This is more strategic. It keeps dividing the list into halves, sorting each part, and then merging them together like assembling puzzle pieces.</li>
+</ul>
+		  </p>
         </div>
       </div>
     </div>
@@ -389,7 +475,7 @@
       <p class="meta">Prefer email:</p>
       <a href="mailto:siddhantasri@gmail.com" class="btn">Email me</a>
       <p class="meta" style="margin-top:6px">GitHub</p>
-      <a href="https://github.com/siddhantasri" target="_blank" class="btn">GitHub profile</a>
+      <a href="https://github.com/TheScienceKid88" target="_blank" class="btn">GitHub profile</a>
       <p class="meta" style="margin-top:6px">Resume</p>
       <a href="SiddhantSrivastavaResume.pdf" class="btn" target="_blank">Download resume</a>
     </div>
@@ -399,7 +485,7 @@
 
 <footer>
   <div class="container">
-    ©Sidasri2025 • A cool, passionate coder • <a href="https://github.com/siddhantasri" target="_blank">GitHub</a>
+    ©Sidasri2025 • A cool, passionate coder • <a href="https://github.com/TheScienceKid88" target="_blank">GitHub</a>
   </div>
 </footer>
 
@@ -414,5 +500,4 @@
 </script>
 
 </body>
-
 </html>
